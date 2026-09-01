@@ -438,17 +438,19 @@
 
         .picture-caption {
             padding: 18px;
+            color: #3a1708;
         }
 
         .picture-caption strong {
             display: block;
             margin-bottom: 6px;
             font-size: 1.25rem;
+            color: #2b1209;
         }
 
         .picture-caption p {
             margin: 0;
-            color: var(--muted);
+            color: #3a1708;
             font-weight: 720;
             line-height: 1.35;
         }
@@ -575,55 +577,6 @@
             font-weight: 680;
         }
 
-        .movement {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 18px;
-            align-items: center;
-            border-radius: 42px;
-            padding: 26px;
-            margin-bottom: 74px;
-            background:
-                radial-gradient(circle at 78% 25%, rgba(255,255,255,0.72), transparent 12rem),
-                linear-gradient(135deg, rgba(170, 249, 255, 0.82), rgba(117, 219, 233, 0.72));
-            color: #063338;
-        }
-
-        .movement-image {
-            min-height: 360px;
-            overflow: hidden;
-            border-radius: 34px;
-            border: 1.5px solid rgba(255,255,255,0.78);
-            background: rgba(255,255,255,0.34);
-            box-shadow: 0 18px 46px rgba(5, 77, 88, 0.16);
-        }
-
-        .movement-image img {
-            width: 100%;
-            height: 100%;
-            min-height: 360px;
-            object-fit: cover;
-            object-position: center 30%;
-            display: block;
-        }
-
-        .progress {
-            height: 16px;
-            overflow: hidden;
-            border-radius: 999px;
-            background: rgba(52, 17, 8, 0.28);
-            border: 1px solid rgba(255, 239, 195, 0.62);
-        }
-
-        .progress span {
-            display: block;
-            width: 58%;
-            height: 100%;
-            border-radius: inherit;
-            background: linear-gradient(90deg, #71ff4a, #ffe66a);
-            box-shadow: 0 0 18px rgba(255, 232, 100, 0.65);
-        }
-
         .footer {
             padding: 26px 0 54px;
             text-align: center;
@@ -638,8 +591,7 @@
         }
 
         @media (max-width: 860px) {
-            .hero,
-            .movement {
+            .hero {
                 grid-template-columns: 1fr;
             }
 
@@ -794,17 +746,6 @@
             </div>
         </section>
 
-        <section class="movement glass" aria-labelledby="movement-title">
-            <div>
-                <span class="eyebrow">👟 optional Apple Health movement</span>
-                <h2 class="section-title" id="movement-title" style="text-align:left; margin-top:16px;">Small steps still count</h2>
-                <p class="hero-copy" style="font-size:1.25rem;">GlucoMood can read Apple Health activity only after permission, then use real walking and running distance for progress and Mimi Movement Message rewards.</p>
-                <div class="progress" aria-label="Movement progress example"><span></span></div>
-            </div>
-            <div class="movement-image">
-                <img src="./assets/steps-food-equivalent.png" alt="GlucoMood movement screen showing steps converted into a food equivalent.">
-            </div>
-        </section>
     </main>
 
     <footer class="footer wrap">
