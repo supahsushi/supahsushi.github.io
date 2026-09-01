@@ -405,6 +405,54 @@
             font-size: 1.25rem;
         }
 
+        .picture-strip {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin: 0 0 74px;
+        }
+
+        .picture-card {
+            overflow: hidden;
+            border-radius: 34px;
+            background: rgba(255,255,255,0.42);
+            border: 1.5px solid rgba(255,255,255,0.68);
+            box-shadow: 0 22px 55px rgba(87, 31, 7, 0.16);
+        }
+
+        .picture-card img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .picture-card.food {
+            background: linear-gradient(145deg, rgba(161, 245, 250, 0.58), rgba(255,255,255,0.50));
+        }
+
+        .picture-card.logs {
+            background: linear-gradient(145deg, rgba(205, 181, 255, 0.50), rgba(255,255,255,0.44));
+        }
+
+        .picture-caption {
+            padding: 18px;
+        }
+
+        .picture-caption strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1.25rem;
+        }
+
+        .picture-caption p {
+            margin: 0;
+            color: var(--muted);
+            font-weight: 720;
+            line-height: 1.35;
+        }
+
         .section-title {
             text-align: center;
             margin: 0 0 22px;
@@ -608,6 +656,7 @@
             }
 
             .stats,
+            .picture-strip,
             .feature-showcase {
                 grid-template-columns: 1fr;
             }
@@ -685,6 +734,30 @@
                 <strong>Mimi AI</strong>
                 <p>Talk through diabetes feelings, patterns, and everyday questions with warmth.</p>
             </div>
+        </section>
+
+        <section class="picture-strip" aria-label="GlucoMood app pictures">
+            <article class="picture-card tracker">
+                <img src="./assets/glucomood-tracker-screen.png" alt="GlucoMood home screen showing glucose mood, history, and movement progress.">
+                <div class="picture-caption">
+                    <strong>GlucoMood Tracker</strong>
+                    <p>Colorful glucose moods, history, and movement progress in one friendly view.</p>
+                </div>
+            </article>
+            <article class="picture-card food">
+                <img src="./assets/steps-food-equivalent.png" alt="GlucoMood movement screen showing steps converted into a food equivalent.">
+                <div class="picture-caption">
+                    <strong>Steps to food equivalents</strong>
+                    <p>Movement can feel more relatable with playful food-form progress.</p>
+                </div>
+            </article>
+            <article class="picture-card logs">
+                <img src="./assets/logs-medication-workouts.png" alt="GlucoMood logs screen showing HealthKit workouts and medication log entries.">
+                <div class="picture-caption">
+                    <strong>Logs, medication, and workouts</strong>
+                    <p>Keep manual entries and supported Apple Health activity easier to review.</p>
+                </div>
+            </article>
         </section>
 
         <section id="features" aria-labelledby="features-title">
