@@ -50,13 +50,13 @@
 
         body {
             margin: 0;
-            font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
             color: var(--ink);
             background:
-                radial-gradient(circle at 18% 8%, rgba(255, 247, 184, 0.72), transparent 18rem),
-                radial-gradient(circle at 78% 18%, rgba(255, 172, 76, 0.58), transparent 22rem),
-                radial-gradient(circle at 18% 78%, rgba(255, 92, 45, 0.56), transparent 26rem),
-                linear-gradient(145deg, var(--sun) 0%, var(--peach) 38%, var(--coral) 66%, var(--berry) 100%);
+                radial-gradient(circle at 12% 7%, rgba(255, 255, 216, 0.78), transparent 20rem),
+                radial-gradient(circle at 82% 12%, rgba(151, 240, 255, 0.40), transparent 20rem),
+                radial-gradient(circle at 10% 70%, rgba(178, 255, 111, 0.30), transparent 24rem),
+                linear-gradient(145deg, #ffe070 0%, #ffad4f 34%, #ff7151 66%, #b879ff 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -125,8 +125,16 @@
             display: grid;
             place-items: center;
             border-radius: 15px;
+            overflow: hidden;
             background: linear-gradient(145deg, #ff3e2d, #fff1a8 45%, #16a7ff);
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.62), 0 10px 24px rgba(91, 25, 6, 0.22);
+        }
+
+        .brand-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .nav-links {
@@ -164,7 +172,7 @@
         .hero {
             min-height: calc(100vh - 80px);
             display: grid;
-            grid-template-columns: minmax(0, 1.04fr) minmax(330px, 0.96fr);
+            grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
             gap: 42px;
             align-items: center;
             padding: 70px 0 56px;
@@ -185,11 +193,11 @@
 
         h1 {
             margin: 20px 0 18px;
-            font-size: clamp(3.6rem, 11vw, 8.6rem);
-            line-height: 0.82;
-            letter-spacing: -0.085em;
+            font-size: clamp(3.2rem, 8.8vw, 7.4rem);
+            line-height: 0.88;
+            letter-spacing: -0.075em;
             text-wrap: balance;
-            color: var(--cream);
+            color: #3a1708;
             text-shadow: 0 8px 28px rgba(93, 28, 8, 0.30);
         }
 
@@ -226,7 +234,7 @@
 
         .phone-stage {
             position: relative;
-            min-height: 680px;
+            min-height: 620px;
             display: grid;
             place-items: center;
         }
@@ -246,17 +254,33 @@
 
         .phone {
             position: relative;
-            width: min(390px, 86vw);
-            border-radius: 48px;
-            padding: 18px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.52), rgba(255,255,255,0.10));
-            border: 2px solid rgba(255,255,255,0.55);
-            box-shadow: 0 30px 80px rgba(80, 21, 8, 0.34);
-            transform: rotate(2deg);
+            width: min(610px, 92vw);
+            border-radius: 42px;
+            padding: 10px;
+            background: rgba(255,255,255,0.36);
+            border: 1.5px solid rgba(255,255,255,0.72);
+            box-shadow: 0 30px 90px rgba(80, 21, 8, 0.28);
+            transform: rotate(1deg);
+        }
+
+        .hero-art {
+            overflow: hidden;
+            border-radius: 34px;
+            min-height: 540px;
+            background: rgba(255, 245, 210, 0.30);
+        }
+
+        .hero-art img {
+            width: 100%;
+            height: 100%;
+            min-height: 540px;
+            display: block;
+            object-fit: cover;
+            object-position: center top;
         }
 
         .screen {
-            min-height: 610px;
+            min-height: 560px;
             border-radius: 34px;
             padding: 26px 22px;
             overflow: hidden;
@@ -384,36 +408,114 @@
         .section-title {
             text-align: center;
             margin: 0 0 22px;
-            color: var(--cream);
+            color: #371609;
             font-size: clamp(2.3rem, 5vw, 4.4rem);
             letter-spacing: -0.055em;
-            text-shadow: 0 8px 26px rgba(80, 21, 8, 0.24);
+            text-shadow: 0 2px 0 rgba(255,255,255,0.38), 0 8px 26px rgba(80, 21, 8, 0.16);
         }
 
-        .feature-grid {
+        .feature-showcase {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 16px;
             margin-bottom: 74px;
         }
 
-        .feature {
+        .feature-panel {
+            position: relative;
+            overflow: hidden;
+            min-height: 420px;
             padding: 24px;
-            border-radius: 30px;
-            min-height: 250px;
+            border-radius: 34px;
+            display: grid;
+            align-content: end;
+            isolation: isolate;
+            color: #201008;
+            border: 1.5px solid rgba(255,255,255,0.68);
+            box-shadow: 0 22px 55px rgba(87, 31, 7, 0.16);
         }
 
-        .feature .emoji {
-            font-size: 2.4rem;
+        .feature-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background: var(--panel-bg);
         }
 
-        .feature h3 {
-            margin: 12px 0 8px;
-            font-size: 1.55rem;
+        .feature-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(180deg, transparent 18%, rgba(255,255,255,0.22) 46%, rgba(255,255,255,0.76) 100%),
+                radial-gradient(circle at 12% 12%, rgba(255,255,255,0.70), transparent 8rem);
+        }
+
+        .feature-panel img {
+            position: absolute;
+            inset: 0;
+            z-index: -3;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.94;
+        }
+
+        .tracker-panel img {
+            object-position: 0% 0%;
+        }
+
+        .movement-panel img {
+            object-position: 100% 0%;
+        }
+
+        .mimi-panel img {
+            object-position: 0% 100%;
+        }
+
+        .profile-panel img {
+            object-position: 100% 100%;
+        }
+
+        .tracker-panel {
+            --panel-bg: linear-gradient(145deg, #efffc4, #c9ff74 48%, #ffe66b);
+        }
+
+        .movement-panel {
+            --panel-bg: linear-gradient(145deg, #bffff7, #94e4ff 54%, #e7fcff);
+        }
+
+        .mimi-panel {
+            --panel-bg: linear-gradient(145deg, #ffd7c7, #ff9983 58%, #ffd1dc);
+        }
+
+        .profile-panel {
+            --panel-bg: linear-gradient(145deg, #efe3ff, #c7b3ff 58%, #e4efff);
+        }
+
+        .panel-copy {
+            max-width: 460px;
+            padding: 18px;
+            border-radius: 26px;
+            background: rgba(255,255,255,0.64);
+            border: 1px solid rgba(255,255,255,0.74);
+            backdrop-filter: blur(18px) saturate(1.12);
+            -webkit-backdrop-filter: blur(18px) saturate(1.12);
+        }
+
+        .panel-copy .emoji {
+            font-size: 2.25rem;
+        }
+
+        .panel-copy h3 {
+            margin: 8px 0 8px;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
             letter-spacing: -0.035em;
         }
 
-        .feature p,
+        .panel-copy p,
         .stat p {
             margin: 0;
             color: var(--muted);
@@ -428,6 +530,10 @@
             border-radius: 42px;
             padding: 26px;
             margin-bottom: 74px;
+            background:
+                radial-gradient(circle at 78% 25%, rgba(255,255,255,0.72), transparent 12rem),
+                linear-gradient(135deg, rgba(170, 249, 255, 0.82), rgba(117, 219, 233, 0.72));
+            color: #063338;
         }
 
         .badge-wall {
@@ -502,8 +608,12 @@
             }
 
             .stats,
-            .feature-grid {
+            .feature-showcase {
                 grid-template-columns: 1fr;
+            }
+
+            .feature-panel {
+                min-height: 330px;
             }
 
             .nav {
@@ -520,7 +630,7 @@
 <body>
     <nav class="nav wrap glass" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="GlucoMood home">
-            <span class="brand-mark">🩸</span>
+            <span class="brand-mark"><img src="./assets/app-icon.png" alt=""></span>
             <span>GlucoMood</span>
         </a>
         <div class="nav-links">
@@ -536,8 +646,8 @@
         <section class="hero" aria-labelledby="hero-title">
             <div>
                 <span class="eyebrow">✨ diabetes logging, but softer</span>
-                <h1 id="hero-title"><span class="gluco">Gluco</span><span class="mood">Mood</span></h1>
-                <p class="hero-copy">A colorful diabetes companion for manual blood sugar logs, medication notes, Apple Health movement progress, and warm Mimi AI support when the day feels like a lot.</p>
+                <h1 id="hero-title">Diabetes tracking with a little more <span class="gluco">personality.</span></h1>
+                <p class="hero-copy">Track blood sugar, log medications, follow your movement, and get supportive guidance from Mimi AI — all in one colorful companion.</p>
                 <div class="cta-row">
                     <a class="button" href="#features">Explore the app ✨</a>
                     <a class="button secondary" href="./privacy/">Privacy Policy</a>
@@ -547,22 +657,8 @@
             <div class="phone-stage" id="mimi" aria-label="Mimi AI preview">
                 <div class="orb" aria-hidden="true"></div>
                 <div class="phone">
-                    <div class="screen">
-                        <div class="hud">
-                            <div>
-                                <h2>Mimi AI 🩸✨</h2>
-                                <p style="margin: 10px 0 0; font-weight: 850;">your GlucoMood AI companion</p>
-                            </div>
-                            <div class="mini-card">Movement<br>Messages<br><span style="font-size: 2rem;">50 💙</span></div>
-                        </div>
-                        <div class="chips" aria-hidden="true">
-                            <span class="chip">I feel shaky</span>
-                            <span class="chip">Why am I tired?</span>
-                        </div>
-                        <div class="bubble"><strong>Mimi</strong><br>Hi, I’m Mimi. I’m here to help you through highs, lows, and the feelings that come with them.</div>
-                        <div class="bubble user">Hi Mimi, I’m having low blood sugar, what do I do?</div>
-                        <div class="bubble">Movement Reward Unlocked! 🎉<br><strong>+50 Mimi Messages</strong></div>
-                        <div class="composer"><span>Tell Mimi how you feel...</span><span class="send">↑</span></div>
+                    <div class="hero-art">
+                        <img src="./assets/glucomood-website.png" alt="Colorful GlucoMood app preview with glucose tracking, movement rewards, and Mimi AI.">
                     </div>
                 </div>
             </div>
@@ -592,27 +688,44 @@
         </section>
 
         <section id="features" aria-labelledby="features-title">
-            <h2 class="section-title" id="features-title">Built for real-life diabetes days</h2>
-            <div class="feature-grid">
-                <article class="feature glass">
-                    <div class="emoji">🌈</div>
-                    <h3>Mood-first tracking</h3>
-                    <p>GlucoMood keeps logs useful without making the screen feel clinical, cold, or overwhelming.</p>
+            <h2 class="section-title" id="features-title">A brighter way to understand your day</h2>
+            <div class="feature-showcase">
+                <article class="feature-panel tracker-panel">
+                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
+                    <div class="panel-copy">
+                        <div class="emoji">🌈</div>
+                        <h3>GlucoMood Tracker</h3>
+                        <p>See your glucose at a glance with manual logs, daily history, colorful moods, and simple insights.</p>
+                    </div>
                 </article>
-                <article class="feature glass">
-                    <div class="emoji">🔔</div>
-                    <h3>Gentle reminders</h3>
-                    <p>Helpful notification support keeps progress visible without pretending to be emergency monitoring.</p>
+                <article class="feature-panel movement-panel" id="movement">
+                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
+                    <div class="panel-copy">
+                        <div class="emoji">👟</div>
+                        <h3>Movement in Food Form</h3>
+                        <p>Use optional Apple Health movement data to make steps and distance feel motivating, playful, and easy to read.</p>
+                    </div>
                 </article>
-                <article class="feature glass">
-                    <div class="emoji">🛡️</div>
-                    <h3>Safety boundaries</h3>
-                    <p>Mimi can educate and encourage, but she does not diagnose, prescribe, or replace medical care.</p>
+                <article class="feature-panel mimi-panel">
+                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
+                    <div class="panel-copy">
+                        <div class="emoji">🩸✨</div>
+                        <h3>Mimi AI</h3>
+                        <p>Chat with a warm, supportive companion about your day, your logs, and general diabetes questions.</p>
+                    </div>
+                </article>
+                <article class="feature-panel profile-panel">
+                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
+                    <div class="panel-copy">
+                        <div class="emoji">🛡️</div>
+                        <h3>Profile & Privacy</h3>
+                        <p>Your data stays yours, with Apple Health permission controls, helpful settings, and clear support links.</p>
+                    </div>
                 </article>
             </div>
         </section>
 
-        <section class="movement glass" id="movement" aria-labelledby="movement-title">
+        <section class="movement glass" aria-labelledby="movement-title">
             <div>
                 <span class="eyebrow">👟 optional Apple Health movement</span>
                 <h2 class="section-title" id="movement-title" style="text-align:left; margin-top:16px;">Small steps still count</h2>
