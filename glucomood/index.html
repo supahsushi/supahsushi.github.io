@@ -3,40 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="GlucoMood is a colorful diabetes companion for manual logging, Apple Health movement progress, Mimi AI support, and gentle motivation.">
-    <meta property="og:title" content="GlucoMood">
-    <meta property="og:description" content="A warm diabetes companion with manual logs, movement rewards, Apple Health progress, and Mimi AI.">
-    <meta property="og:type" content="website">
-    <title>GlucoMood — Your diabetes companion</title>
+    <title>GlucoMood</title>
+    <meta name="description" content="GlucoMood — a friendly diabetes companion for manual logging, movement motivation, and supportive Mimi AI conversations.">
     <style>
         :root {
             color-scheme: light dark;
-            --sun: #ffd36b;
-            --peach: #ff9863;
-            --coral: #f25133;
-            --berry: #9c3c68;
-            --cream: #fff7ea;
-            --ink: #2b1209;
-            --muted: rgba(43, 18, 9, 0.72);
-            --glass: rgba(255, 185, 94, 0.26);
-            --rim: rgba(255, 244, 191, 0.86);
-            --shadow: rgba(98, 31, 5, 0.24);
-            --blue: #1ea7ff;
+            --bg: #fff5ec;
+            --card: #ffffff;
+            --text: #24120d;
+            --muted: #6f554b;
+            --accent: #f26a2e;
+            --border: rgba(117, 75, 48, 0.18);
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --sun: #ff9b46;
-                --peach: #8f391f;
-                --coral: #4e160c;
-                --berry: #210a07;
-                --cream: #fff4e6;
-                --ink: #fff3e5;
-                --muted: rgba(255, 230, 207, 0.76);
-                --glass: rgba(94, 33, 14, 0.42);
-                --rim: rgba(255, 177, 91, 0.72);
-                --shadow: rgba(0, 0, 0, 0.38);
-                --blue: #64c7ff;
+                --bg: #1f0e08;
+                --card: #2d160f;
+                --text: #fff8f1;
+                --muted: #e6c4b0;
+                --accent: #ff9a4a;
+                --border: rgba(255, 185, 116, 0.24);
             }
         }
 
@@ -44,717 +31,213 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             margin: 0;
-            font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at 12% 7%, rgba(255, 255, 216, 0.78), transparent 20rem),
-                radial-gradient(circle at 82% 12%, rgba(151, 240, 255, 0.40), transparent 20rem),
-                radial-gradient(circle at 10% 70%, rgba(178, 255, 111, 0.30), transparent 24rem),
-                linear-gradient(145deg, #ffe070 0%, #ffad4f 34%, #ff7151 66%, #b879ff 100%);
             min-height: 100vh;
-            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, rgba(255, 167, 79, 0.26), transparent 34%), var(--bg);
+            color: var(--text);
+            line-height: 1.55;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background-image:
-                radial-gradient(circle, rgba(255,255,255,0.68) 0 1px, transparent 2px),
-                radial-gradient(circle, rgba(255,224,146,0.52) 0 1px, transparent 2px);
-            background-size: 92px 92px, 137px 137px;
-            background-position: 0 12px, 34px 0;
-            opacity: 0.42;
-            mix-blend-mode: screen;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        .wrap {
-            width: min(1180px, calc(100% - 36px));
+        header.hero {
+            width: min(720px, calc(100% - 40px));
             margin: 0 auto;
+            padding: 64px 0 32px;
         }
 
-        .glass {
-            background:
-                linear-gradient(135deg, rgba(255,255,255,0.20), transparent 42%),
-                var(--glass);
-            border: 1.5px solid var(--rim);
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.30),
-                0 18px 50px var(--shadow);
-            backdrop-filter: blur(22px) saturate(1.25);
-            -webkit-backdrop-filter: blur(22px) saturate(1.25);
-        }
-
-        .nav {
-            position: sticky;
-            top: 14px;
-            z-index: 20;
-            margin: 14px auto 0;
-            padding: 12px 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            border-radius: 999px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 950;
-            font-size: 1.12rem;
-            letter-spacing: -0.03em;
-            text-decoration: none;
-        }
-
-        .brand-mark {
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            border-radius: 15px;
-            overflow: hidden;
-            background: linear-gradient(145deg, #ff3e2d, #fff1a8 45%, #16a7ff);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.62), 0 10px 24px rgba(91, 25, 6, 0.22);
-        }
-
-        .brand-mark img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        .nav-links a,
-        .button {
-            text-decoration: none;
-            font-weight: 850;
-            border-radius: 999px;
-            padding: 10px 14px;
-            color: var(--ink);
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1.5px solid rgba(255,255,255,0.55);
-            background: linear-gradient(135deg, #fff6bf, #ff8b32);
-            box-shadow: 0 12px 26px rgba(133, 48, 5, 0.22);
-        }
-
-        .button.secondary {
-            background: rgba(255,255,255,0.18);
-            color: var(--cream);
-            border-color: rgba(255,255,255,0.42);
-        }
-
-        .hero {
-            min-height: calc(100vh - 80px);
-            display: grid;
-            grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
-            gap: 42px;
-            align-items: center;
-            padding: 70px 0 56px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 13px;
-            border-radius: 999px;
-            font-weight: 900;
-            color: var(--cream);
-            background: rgba(71, 20, 8, 0.26);
-            border: 1px solid rgba(255,255,255,0.30);
-            backdrop-filter: blur(12px);
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 18px 46px rgba(55, 24, 8, 0.16);
         }
 
         h1 {
-            margin: 20px 0 18px;
-            font-size: clamp(3.2rem, 8.8vw, 7.4rem);
-            line-height: 0.88;
-            letter-spacing: -0.075em;
-            text-wrap: balance;
-            color: #3a1708;
-            text-shadow: 0 8px 28px rgba(93, 28, 8, 0.30);
+            margin: 0 0 10px;
+            font-size: clamp(2.4rem, 8vw, 4.4rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
         }
 
-        .gluco {
-            color: #fb4d32;
-            text-shadow:
-                0 2px 0 rgba(255,255,255,0.48),
-                0 12px 34px rgba(105, 31, 6, 0.25);
+        header.hero p {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 1.08rem;
         }
 
-        .mood {
-            color: var(--blue);
-            text-shadow:
-                0 2px 0 rgba(255,255,255,0.50),
-                0 12px 34px rgba(9, 67, 102, 0.24);
+        header.hero nav {
+            display: grid;
+            gap: 12px;
         }
 
-        .hero-copy {
-            margin: 0 0 26px;
-            max-width: 620px;
-            font-size: clamp(1.18rem, 2.5vw, 1.65rem);
-            line-height: 1.25;
-            font-weight: 780;
-            color: var(--cream);
-            text-shadow: 0 4px 20px rgba(93, 28, 8, 0.25);
+        a {
+            color: var(--accent);
+            font-weight: 800;
+            text-decoration: none;
         }
 
-        .cta-row {
+        .link-card {
+            display: block;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 16px 18px;
+            background: color-mix(in srgb, var(--card) 86%, var(--accent));
+        }
+
+        main.gallery {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 8px 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        main.gallery button.shot {
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            background: none;
+            cursor: zoom-in;
+            box-shadow: 0 14px 36px rgba(55, 24, 8, 0.14);
+        }
+
+        main.gallery button.shot img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        footer {
+            width: min(720px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 24px 0 72px;
+            text-align: center;
+        }
+
+        footer p.disclaimer {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin: 0 0 18px;
+        }
+
+        footer .links {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            justify-content: center;
+            gap: 10px 22px;
+        }
+
+        footer .links a {
+            font-size: 0.95rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 4, 2, 0.86);
+            display: none;
             align-items: center;
-        }
-
-        .phone-stage {
-            position: relative;
-            min-height: 620px;
-            display: grid;
-            place-items: center;
-        }
-
-        .orb {
-            position: absolute;
-            width: min(86vw, 520px);
-            aspect-ratio: 1;
-            border-radius: 50%;
-            background:
-                radial-gradient(circle at 38% 28%, rgba(255,255,255,0.65), transparent 16%),
-                radial-gradient(circle at 50% 50%, rgba(255, 229, 117, 0.42), transparent 40%),
-                radial-gradient(circle, rgba(255, 111, 55, 0.34), transparent 68%);
-            filter: blur(2px);
-            opacity: 0.8;
-        }
-
-        .phone {
-            position: relative;
-            width: min(610px, 92vw);
-            border-radius: 42px;
-            padding: 10px;
-            background: rgba(255,255,255,0.36);
-            border: 1.5px solid rgba(255,255,255,0.72);
-            box-shadow: 0 30px 90px rgba(80, 21, 8, 0.28);
-            transform: rotate(1deg);
-        }
-
-        .hero-art {
-            overflow: hidden;
-            border-radius: 34px;
-            min-height: 540px;
-            background: rgba(255, 245, 210, 0.30);
-        }
-
-        .hero-art img {
-            width: 100%;
-            height: 100%;
-            min-height: 540px;
-            display: block;
-            object-fit: cover;
-            object-position: center top;
-        }
-
-        .screen {
-            min-height: 560px;
-            border-radius: 34px;
-            padding: 26px 22px;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 70% 8%, rgba(255, 240, 155, 0.55), transparent 12rem),
-                linear-gradient(180deg, #ffb253, #ff7b3d 46%, #ef472c);
-            color: white;
-            position: relative;
-        }
-
-        .screen::after {
-            content: "✦";
-            position: absolute;
-            right: 24px;
-            top: 120px;
-            font-size: 56px;
-            opacity: 0.55;
-        }
-
-        .hud {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            gap: 14px;
-        }
-
-        .hud h2 {
-            margin: 0;
-            font-size: 2.45rem;
-            line-height: 0.95;
-            letter-spacing: -0.06em;
-        }
-
-        .mini-card,
-        .chip,
-        .bubble,
-        .composer {
-            background: rgba(120, 50, 22, 0.32);
-            border: 1.5px solid rgba(255, 235, 184, 0.68);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
-        }
-
-        .mini-card {
-            min-width: 108px;
-            text-align: center;
-            padding: 14px 10px;
-            border-radius: 24px;
-            font-weight: 900;
-        }
-
-        .chips {
-            display: flex;
-            gap: 10px;
-            margin: 28px 0;
-            overflow: hidden;
-        }
-
-        .chip {
-            white-space: nowrap;
-            padding: 12px 14px;
-            border-radius: 999px;
-            font-weight: 850;
-        }
-
-        .bubble {
-            margin: 18px 0;
-            border-radius: 28px;
+            justify-content: center;
             padding: 20px;
-            font-weight: 750;
-            line-height: 1.35;
+            z-index: 100;
+            cursor: zoom-out;
         }
 
-        .bubble.user {
-            margin-left: 70px;
-            background: rgba(174, 61, 30, 0.50);
-        }
-
-        .composer {
-            position: absolute;
-            left: 20px;
-            right: 20px;
-            bottom: 24px;
+        .lightbox.open {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 12px;
-            border-radius: 28px;
         }
 
-        .send {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            background: #f04c22;
-            font-size: 1.6rem;
-            font-weight: 950;
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 14px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin: 12px 0 70px;
-        }
-
-        .stat {
-            padding: 18px;
-            border-radius: 28px;
-            min-height: 150px;
-        }
-
-        .stat .icon {
-            font-size: 2rem;
-        }
-
-        .stat strong {
-            display: block;
-            margin: 8px 0 4px;
-            font-size: 1.25rem;
-        }
-
-        .picture-strip {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            margin: 0 0 74px;
-        }
-
-        .picture-card {
-            overflow: hidden;
-            border-radius: 34px;
-            background: rgba(255,255,255,0.42);
-            border: 1.5px solid rgba(255,255,255,0.68);
-            box-shadow: 0 22px 55px rgba(87, 31, 7, 0.16);
-        }
-
-        .picture-card img {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
-
-        .picture-card.food {
-            background: linear-gradient(145deg, rgba(161, 245, 250, 0.58), rgba(255,255,255,0.50));
-        }
-
-        .picture-card.logs {
-            background: linear-gradient(145deg, rgba(205, 181, 255, 0.50), rgba(255,255,255,0.44));
-        }
-
-        .picture-caption {
-            padding: 18px;
-            color: #3a1708;
-        }
-
-        .picture-caption strong {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 1.25rem;
-            color: #2b1209;
-        }
-
-        .picture-caption p {
-            margin: 0;
-            color: #3a1708;
-            font-weight: 720;
-            line-height: 1.35;
-        }
-
-        .section-title {
-            text-align: center;
-            margin: 0 0 22px;
-            color: #371609;
-            font-size: clamp(2.3rem, 5vw, 4.4rem);
-            letter-spacing: -0.055em;
-            text-shadow: 0 2px 0 rgba(255,255,255,0.38), 0 8px 26px rgba(80, 21, 8, 0.16);
-        }
-
-        .feature-showcase {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-            margin-bottom: 74px;
-        }
-
-        .feature-panel {
-            position: relative;
-            overflow: hidden;
-            min-height: 420px;
-            padding: 24px;
-            border-radius: 34px;
-            display: grid;
-            align-content: end;
-            isolation: isolate;
-            color: #201008;
-            border: 1.5px solid rgba(255,255,255,0.68);
-            box-shadow: 0 22px 55px rgba(87, 31, 7, 0.16);
-        }
-
-        .feature-panel::before {
-            content: "";
+        .lightbox .close-hint {
             position: absolute;
-            inset: 0;
-            z-index: -2;
-            background: var(--panel-bg);
-        }
-
-        .feature-panel::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background:
-                linear-gradient(180deg, transparent 18%, rgba(255,255,255,0.22) 46%, rgba(255,255,255,0.76) 100%),
-                radial-gradient(circle at 12% 12%, rgba(255,255,255,0.70), transparent 8rem);
-        }
-
-        .feature-panel img {
-            position: absolute;
-            inset: 0;
-            z-index: -3;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.94;
-        }
-
-        .tracker-panel img {
-            object-position: 0% 0%;
-        }
-
-        .movement-panel img {
-            object-position: 100% 0%;
-        }
-
-        .mimi-panel img {
-            object-position: 0% 100%;
-        }
-
-        .profile-panel img {
-            object-position: 100% 100%;
-        }
-
-        .tracker-panel {
-            --panel-bg: linear-gradient(145deg, #efffc4, #c9ff74 48%, #ffe66b);
-        }
-
-        .movement-panel {
-            --panel-bg: linear-gradient(145deg, #bffff7, #94e4ff 54%, #e7fcff);
-        }
-
-        .mimi-panel {
-            --panel-bg: linear-gradient(145deg, #ffd7c7, #ff9983 58%, #ffd1dc);
-        }
-
-        .profile-panel {
-            --panel-bg: linear-gradient(145deg, #efe3ff, #c7b3ff 58%, #e4efff);
-        }
-
-        .panel-copy {
-            max-width: 460px;
-            padding: 18px;
-            border-radius: 26px;
-            background: rgba(255,255,255,0.64);
-            border: 1px solid rgba(255,255,255,0.74);
-            backdrop-filter: blur(18px) saturate(1.12);
-            -webkit-backdrop-filter: blur(18px) saturate(1.12);
-        }
-
-        .panel-copy .emoji {
-            font-size: 2.25rem;
-        }
-
-        .panel-copy h3 {
-            margin: 8px 0 8px;
-            font-size: clamp(1.8rem, 3vw, 2.6rem);
-            letter-spacing: -0.035em;
-        }
-
-        .panel-copy p {
-            margin: 0;
-            color: #3a1708;
-            font-weight: 680;
-        }
-
-        .stat p {
-            margin: 0;
-            color: var(--muted);
-            font-weight: 680;
-        }
-
-        .footer {
-            padding: 26px 0 54px;
-            text-align: center;
-            color: var(--cream);
-            font-weight: 750;
-        }
-
-        .footer a {
-            margin: 0 8px;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 4px;
-        }
-
-        @media (max-width: 860px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding-top: 46px;
-            }
-
-            .phone-stage {
-                min-height: auto;
-            }
-
-            .stats,
-            .picture-strip,
-            .feature-showcase {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-panel {
-                min-height: 330px;
-            }
-
-            .nav {
-                align-items: flex-start;
-                border-radius: 28px;
-            }
-
-            .nav-links {
-                display: none;
-            }
+            top: 18px;
+            right: 22px;
+            color: #fff8f1;
+            font-size: 0.85rem;
+            font-weight: 700;
+            opacity: 0.78;
         }
     </style>
 </head>
 <body>
-    <nav class="nav wrap glass" aria-label="Main navigation">
-        <a class="brand" href="#top" aria-label="GlucoMood home">
-            <span class="brand-mark"><img src="./assets/app-icon.png" alt=""></span>
-            <span>GlucoMood</span>
-        </a>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#mimi">Mimi AI</a>
-            <a href="#movement">Movement</a>
-            <a href="./privacy/">Privacy</a>
-            <a href="./terms/">Terms</a>
-        </div>
-    </nav>
-
-    <main id="top" class="wrap">
-        <section class="hero" aria-labelledby="hero-title">
-            <div>
-                <span class="eyebrow">✨ diabetes logging, but softer</span>
-                <h1 id="hero-title">Diabetes tracking with a little more <span class="gluco">personality.</span></h1>
-                <p class="hero-copy">Track blood sugar, log medications, follow your movement, and get supportive guidance from Mimi AI — all in one colorful companion.</p>
-                <div class="cta-row">
-                    <a class="button" href="#features">Explore the app ✨</a>
-                    <a class="button secondary" href="./privacy/">Privacy Policy</a>
-                </div>
-            </div>
-
-            <div class="phone-stage" id="mimi" aria-label="Mimi AI preview">
-                <div class="orb" aria-hidden="true"></div>
-                <div class="phone">
-                    <div class="hero-art">
-                        <img src="./assets/glucomood-website.png" alt="Colorful GlucoMood app preview with glucose tracking, movement rewards, and Mimi AI.">
-                    </div>
-                </div>
-            </div>
+    <header class="hero">
+        <section class="card">
+            <h1>GlucoMood</h1>
+            <p>A friendly diabetes companion for manual logging, movement motivation, and supportive Mimi AI conversations.</p>
         </section>
+    </header>
 
-        <section class="stats" aria-label="GlucoMood highlights">
-            <div class="stat glass">
-                <span class="icon">🩸</span>
-                <strong>Manual logs</strong>
-                <p>Track blood sugar, insulin, medication, feelings, and notes in one gentle place.</p>
-            </div>
-            <div class="stat glass">
-                <span class="icon">👟</span>
-                <strong>Apple Health</strong>
-                <p>Use optional steps and walking/running distance to power movement progress.</p>
-            </div>
-            <div class="stat glass">
-                <span class="icon">💙</span>
-                <strong>Movement Messages</strong>
-                <p>Earn bonus Mimi messages by reaching supported movement milestones.</p>
-            </div>
-            <div class="stat glass">
-                <span class="icon">🧠</span>
-                <strong>Mimi AI</strong>
-                <p>Talk through diabetes feelings, patterns, and everyday questions with warmth.</p>
-            </div>
-        </section>
-
-        <section class="picture-strip" aria-label="GlucoMood app pictures">
-            <article class="picture-card tracker">
-                <img src="./assets/glucomood-tracker-screen.png" alt="GlucoMood home screen showing glucose mood, history, and movement progress.">
-                <div class="picture-caption">
-                    <strong>GlucoMood Tracker</strong>
-                    <p>Colorful glucose moods, history, and movement progress in one friendly view.</p>
-                </div>
-            </article>
-            <article class="picture-card food">
-                <img src="./assets/steps-food-equivalent.png" alt="GlucoMood movement screen showing steps converted into a food equivalent.">
-                <div class="picture-caption">
-                    <strong>Steps to food equivalents</strong>
-                    <p>Movement can feel more relatable with playful food-form progress.</p>
-                </div>
-            </article>
-            <article class="picture-card logs">
-                <img src="./assets/logs-medication-workouts.png" alt="GlucoMood logs screen showing HealthKit workouts and medication log entries.">
-                <div class="picture-caption">
-                    <strong>Logs, medication, and workouts</strong>
-                    <p>Keep manual entries and supported Apple Health activity easier to review.</p>
-                </div>
-            </article>
-        </section>
-
-        <section id="features" aria-labelledby="features-title">
-            <h2 class="section-title" id="features-title">A brighter way to understand your day</h2>
-            <div class="feature-showcase">
-                <article class="feature-panel tracker-panel">
-                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
-                    <div class="panel-copy">
-                        <div class="emoji">🌈</div>
-                        <h3>GlucoMood Tracker</h3>
-                        <p>See your glucose at a glance with manual logs, daily history, colorful moods, and simple insights.</p>
-                    </div>
-                </article>
-                <article class="feature-panel movement-panel" id="movement">
-                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
-                    <div class="panel-copy">
-                        <div class="emoji">👟</div>
-                        <h3>Movement in Food Form</h3>
-                        <p>Use optional Apple Health movement data to make steps and distance feel motivating, playful, and easy to read.</p>
-                    </div>
-                </article>
-                <article class="feature-panel mimi-panel">
-                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
-                    <div class="panel-copy">
-                        <div class="emoji">🩸✨</div>
-                        <h3>Mimi AI</h3>
-                        <p>Chat with a warm, supportive companion about your day, your logs, and general diabetes questions.</p>
-                    </div>
-                </article>
-                <article class="feature-panel profile-panel">
-                    <img src="./assets/glucomood-feature-panels.png" alt="" aria-hidden="true">
-                    <div class="panel-copy">
-                        <div class="emoji">🛡️</div>
-                        <h3>Profile & Privacy</h3>
-                        <p>Your data stays yours, with Apple Health permission controls, helpful settings, and clear support links.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
+    <main class="gallery">
+        <button class="shot" data-full="assets/marketing-01-tracker.png">
+            <img src="assets/marketing-01-tracker.png" alt="GlucoMood Tracker — see your numbers, understand your body, take control of your day." loading="lazy">
+        </button>
+        <button class="shot" data-full="assets/marketing-02-movement.png">
+            <img src="assets/marketing-02-movement.png" alt="Movement in Food Form — see your steps, get moving, discover what your activity adds up to." loading="lazy">
+        </button>
+        <button class="shot" data-full="assets/marketing-03-mimi.png">
+            <img src="assets/marketing-03-mimi.png" alt="Mimi AI — your GlucoMood AI companion, always here for you day or night." loading="lazy">
+        </button>
+        <button class="shot" data-full="assets/marketing-04-logs.png">
+            <img src="assets/marketing-04-logs.png" alt="Logs — your health history, together." loading="lazy">
+        </button>
+        <button class="shot" data-full="assets/marketing-05-profile.png">
+            <img src="assets/marketing-05-profile.png" alt="Profile — your GlucoMood, your way." loading="lazy">
+        </button>
     </main>
 
-    <footer class="footer wrap">
-        <p>GlucoMood is supportive wellness software, not medical diagnosis, treatment, or emergency care.</p>
-        <p>
+    <footer>
+        <p class="disclaimer">GlucoMood is supportive wellness software, not medical diagnosis, treatment, or emergency care.</p>
+        <nav class="links" aria-label="Legal and support links">
             <a href="./privacy/">Privacy Policy</a>
             <a href="./terms/">Terms of Service</a>
-            <a href="mailto:bentulj4@gmail.com">Support</a>
-        </p>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=bentulj4@gmail.com">Support</a>
+        </nav>
     </footer>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot">
+        <span class="close-hint">Tap to close</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('button.shot').forEach((button) => {
+            button.addEventListener('click', () => {
+                const full = button.getAttribute('data-full');
+                const alt = button.querySelector('img').getAttribute('alt');
+                lightboxImg.src = full;
+                lightboxImg.alt = alt;
+                lightbox.classList.add('open');
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('open');
+            lightboxImg.src = '';
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                lightbox.classList.remove('open');
+                lightboxImg.src = '';
+            }
+        });
+    </script>
 </body>
 </html>
